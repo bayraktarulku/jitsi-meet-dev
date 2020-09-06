@@ -1,8 +1,4 @@
-# jitsi-meet-dev
-
-Jitsi Diagram
-=============
-![Jitsi Diagram](img/jitsi-diagram.jpeg)
+### jitsi-meet-dev
 
 While the moderator can mute a participant, they cannot unmute the participant due to privacy concerns. Enhancement is required to unmute the remote user. In this project, we will explain how we can add silence feature to the Jitsi-meet project. The repositories that have been modified in the Jitsi Meet project are listed below.
 
@@ -14,7 +10,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
 - [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-repository)
 
     git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
-## 1. jicofo repository
+#### 1. jicofo repository
 * You can clone the repository the change was made. (line no will be added)
     ```
     apt install maven
@@ -96,14 +92,14 @@ While the moderator can mute a participant, they cannot unmute the participant d
 
         ```tail -f /var/log/jitsi/jicofo.log```
 
-## 2. jitsi-meet repository
+#### 2. jitsi-meet repository
 - You can clone the repository the change was made.
     ```
     git clone --branch mute-unmute git@github.com:bayraktarulku/jitsi-meet.git
     ```
 - For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
 
-#### 2.1 Create Unmute Button Component
+##### 2.1 Create Unmute Button Component
 * First, the unmute feature has been added to the participant's options menu.
     - UnMuteButton && AbstractUnMuteButton classes created
       - [UnMuteButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
@@ -147,7 +143,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
                 participantID = { participantID } />
         );
         ```
-#### 2.2 Create Unmute Button Dialog Component
+##### 2.2 Create Unmute Button Dialog Component
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
   - [AbstractUnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
   - [UnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
@@ -178,7 +174,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
     }
     ```
 
-#### 2.3 Controls of Unmute
+##### 2.3 Controls of Unmute
 * Method created for unmute option __unMuteRemoteParticipant__ imported.
   - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
 
@@ -230,7 +226,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         break;
     }
     ```
-## 3. lib-jitsi-meet repository
+#### 3. lib-jitsi-meet repository
 * Added new event for AUDIO_UNMUTED_BY_FOCUS.
   - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
 
