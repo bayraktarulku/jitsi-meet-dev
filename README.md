@@ -13,11 +13,12 @@ While the moderator can mute a participant, they cannot unmute the participant d
   - [2.3 Controls of Unmute ](#2-3-controls-of-unmute)
 - [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-repository)
 
+    git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
 ## 1. jicofo repository
 * You can clone the repository the change was made. (line no will be added)
     ```
     apt install maven
-    git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
+    git clone --branch mute-unmute git@github.com:bayraktarulku/jicofo.git
     cd jicofo
     mvn install
     cd target
@@ -102,8 +103,9 @@ description will be added!
 * First, the unmute feature has been added to the participant's options menu.
     - UnMuteButton && AbstractUnMuteButton classes created
         ```
-        react/features/remote-video-menu/components/web/UnMuteButton.js
-        react/features/remote-video-menu/components/AbstractUnMuteButton.js
+        [UnMuteButton] (https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
+        [AbstractUnMuteButton] (https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
+
         ```
 
     - Export UnMuteButton Component
