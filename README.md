@@ -107,10 +107,8 @@ description will be added!
      
 
     - Export UnMuteButton Component
-        ```
-        vim react/features/remote-video-menu/components/web/index.js
-        ```
-
+      - [index.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/index.js)
+      
         ```
         export { default as UnMuteButton } from './UnMuteButton';
         export { default as UnMuteRemoteParticipantDialog }
@@ -118,9 +116,8 @@ description will be added!
         ```
 
     - UnMuteButton Component added to remoteVideoOptionsMenu
-        ```
-        vim react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js
-        ```
+      - [RemoteVideoMenuTriggerButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
+        
         - UnMuteButton added import list
         ```
         import {
@@ -150,12 +147,9 @@ description will be added!
 
 #### 2.2 Create Unmute Button Dialog Component
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
-    ```
-    react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js
-    ```
-    ```
-    vim react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js
-    ```
+  - [AbstractUnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
+  - [UnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
+     
     ```
     class UnMuteRemoteParticipantDialog extends AbstractUnMuteRemoteParticipantDialog {
         /**
@@ -186,9 +180,8 @@ description will be added!
 
 #### 2.3 Controls of Unmute
 * Method created for unmute option __unMuteRemoteParticipant__ imported.
-    ```
-    vim react/features/remote-video-menu/action.js
-    ```
+  - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
+    
     ```
     import {
         unMuteRemoteParticipant
@@ -203,16 +196,14 @@ description will be added!
     }
     ```
 * Added const variable -> UNMUTE_REMOTE_PARTICIPANT.
-    ```
-    vim react/features/base/participants/actionTypes.js
-    ```
+  - [actionTypes.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actionTypes.js)
+  
     ```
     export const UNMUTE_REMOTE_PARTICIPANT = 'UNMUTE_REMOTE_PARTICIPANT';
     ```
 * This option import list added.
-    ```
-    vim react/features/base/participants/actions.js
-    ```
+  - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
+    
     ```
     import {
         UNMUTE_REMOTE_PARTICIPANT,
@@ -226,9 +217,8 @@ description will be added!
     }
     ```
 * Created new case (UNMUTE_REMOTE_PARTICIPANT).
-    ```
-    vim react/features/base/participants/middleware.js
-    ```
+  - [middleware.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/middleware.js)
+   
     ```
     import {
         UNMUTE_REMOTE_PARTICIPANT,
@@ -242,16 +232,14 @@ description will be added!
     ```
 ## 3. lib-jitsi-meet repository
 * Added new event for AUDIO_UNMUTED_BY_FOCUS.
-    ```
-    vim service/xmpp/XMPPEvents.js
-    ```
+  - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
+    
     ```
     AUDIO_UNMUTED_BY_FOCUS: 'xmpp.audio_unmuted_by_focus'
     ```
 * Created event listener for AUDIO_UNMUTED_BY_FOCUS.
-    ```
-    vim JitsiConferenceEventManager.js
-    ```
+  - [JitsiConferenceEventManager.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConferenceEventManager.js)
+
     ```
     chatRoom.addListener(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS,
         actor => {
@@ -277,10 +265,9 @@ description will be added!
         }
     );
     ```
-* Added prototype for unMuteParticipant.
-    ```
-    vim JitsiConference.js
-    ```
+* Added prototype for unMuteParticipant. 
+  - [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
+
     ```
     JitsiConference.prototype.unMuteParticipant = function(id) {
         const participant = this.getParticipantById(id);
@@ -292,9 +279,8 @@ description will be added!
     };
     ```
 * Added unMuteParticipant method and changed onMute method.
-    ```
-    vim modules/xmpp/ChatRoom.js
-    ```
+  - [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
+
     ```
     unMuteParticipant(jid, mute) {
         logger.info('set unmute', mute);
