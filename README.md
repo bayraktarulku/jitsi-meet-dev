@@ -143,8 +143,6 @@ description will be added!
                 participantID = { participantID } />
         );
         ```
-        ![Unmute Video Option](img/unmute-option.png)
-
 #### 2.2 Create Unmute Button Dialog Component
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
   - [AbstractUnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
@@ -175,8 +173,6 @@ description will be added!
         _onSubmit: () => boolean;
     }
     ```
-
-    ![Unmute Remote Participant Dialog](img/unmute-participant-dialog.png)
 
 #### 2.3 Controls of Unmute
 * Method created for unmute option __unMuteRemoteParticipant__ imported.
