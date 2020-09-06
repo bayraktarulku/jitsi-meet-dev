@@ -2,7 +2,7 @@
 
 Jitsi Diagram
 =============
-![Jitsi Diagram](https://ej-gogs.beyaz.net/beyaz/2020_doc_beyaz_research/raw/branch/master/jitsi/source-code-jitsi/doc/development-notes/img/jitsi-diagram.jpeg)
+![Jitsi Diagram](img/jitsi-diagram.jpeg)
 
 While the moderator can mute a participant, they cannot unmute the participant due to privacy concerns. Enhancement is required to unmute the remote user. In this project, we will explain how we can add silence feature to the Jitsi-meet project. The repositories that have been modified in the Jitsi Meet project are listed below.
 
@@ -133,7 +133,7 @@ description will be added!
                 participantID = { participantID } />
         );
         ```
-        ![Unmute Video Option](https://ej-gogs.beyaz.net/beyaz/2020_doc_beyaz_research/raw/commit/77ec4923b5ebafecc6a579cb7e251cf72d185791/jitsi/source-code-jitsi/doc/development-notes/img/unmute-option.png)
+        ![Unmute Video Option](img/unmute-option.png)
 
 #### 2.2 Create Unmute Button Dialog Component
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
@@ -169,7 +169,7 @@ description will be added!
     }
     ```
 
-    ![Unmute Remote Participant Dialog](https://ej-gogs.beyaz.net/beyaz/2020_doc_beyaz_research/raw/commit/72c473069bde7bacbe9103712926f90e1cb2fa91/jitsi/source-code-jitsi/doc/development-notes/img/unmute-participant-dialog.png)
+    ![Unmute Remote Participant Dialog](img/unmute-participant-dialog.png)
 
 #### 2.3 Controls of Unmute
 * Method created for unmute option __unMuteRemoteParticipant__ imported.
