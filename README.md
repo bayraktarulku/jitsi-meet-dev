@@ -7,9 +7,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
   - [2.1 Create Unmute Button Component](#2-1-create-unmute-button-component)
   - [2.2 Create Unmute Button Dialog Component](#2-2-create-unmute-button-dialog-component)
   - [2.3 Controls of Unmute ](#2-3-controls-of-unmute)
-- [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-repository)
+- [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-reposi
 
-    git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
 #### 1. jicofo repository
 * You can clone the repository the change was made.
     ```
