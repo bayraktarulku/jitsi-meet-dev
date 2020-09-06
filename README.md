@@ -327,3 +327,4 @@ description will be added!
 
 #### Contributors
 
+[Seda Çağlar](https://github.com/sdcaglar)
