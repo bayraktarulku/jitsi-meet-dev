@@ -97,18 +97,22 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```tail -f /var/log/jitsi/jicofo.log```
 
 ## 2. jitsi-meet repository
-description will be added!
+    * You can clone the repository the change was made.
+        ```
+        git clone --branch mute-unmute git@github.com:bayraktarulku/jitsi-meet.git
+        ```
+    * For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
 
 #### 2.1 Create Unmute Button Component
 * First, the unmute feature has been added to the participant's options menu.
     - UnMuteButton && AbstractUnMuteButton classes created
       - [UnMuteButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
       - [AbstractUnMuteButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
-     
+
 
     - Export UnMuteButton Component
       - [index.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/index.js)
-      
+
         ```
         export { default as UnMuteButton } from './UnMuteButton';
         export { default as UnMuteRemoteParticipantDialog }
@@ -117,7 +121,7 @@ description will be added!
 
     - UnMuteButton Component added to remoteVideoOptionsMenu
       - [RemoteVideoMenuTriggerButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
-        
+
         - UnMuteButton added import list
         ```
         import {
@@ -147,7 +151,7 @@ description will be added!
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
   - [AbstractUnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
   - [UnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
-     
+
     ```
     class UnMuteRemoteParticipantDialog extends AbstractUnMuteRemoteParticipantDialog {
         /**
@@ -177,7 +181,7 @@ description will be added!
 #### 2.3 Controls of Unmute
 * Method created for unmute option __unMuteRemoteParticipant__ imported.
   - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
-    
+
     ```
     import {
         unMuteRemoteParticipant
@@ -193,13 +197,13 @@ description will be added!
     ```
 * Added const variable -> UNMUTE_REMOTE_PARTICIPANT.
   - [actionTypes.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actionTypes.js)
-  
+
     ```
     export const UNMUTE_REMOTE_PARTICIPANT = 'UNMUTE_REMOTE_PARTICIPANT';
     ```
 * This option import list added.
   - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
-    
+
     ```
     import {
         UNMUTE_REMOTE_PARTICIPANT,
@@ -214,7 +218,7 @@ description will be added!
     ```
 * Created new case (UNMUTE_REMOTE_PARTICIPANT).
   - [middleware.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/middleware.js)
-   
+
     ```
     import {
         UNMUTE_REMOTE_PARTICIPANT,
@@ -229,7 +233,7 @@ description will be added!
 ## 3. lib-jitsi-meet repository
 * Added new event for AUDIO_UNMUTED_BY_FOCUS.
   - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
-    
+
     ```
     AUDIO_UNMUTED_BY_FOCUS: 'xmpp.audio_unmuted_by_focus'
     ```
@@ -261,7 +265,7 @@ description will be added!
         }
     );
     ```
-* Added prototype for unMuteParticipant. 
+* Added prototype for unMuteParticipant.
   - [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
 
     ```
