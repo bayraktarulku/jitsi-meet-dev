@@ -226,98 +226,105 @@ While the moderator can mute a participant, they cannot unmute the participant d
         break;
     }
     ```
+
 #### 3. lib-jitsi-meet repository
-* Added new event for AUDIO_UNMUTED_BY_FOCUS.
-  - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
+    - You can clone the repository the change was made.
+        ```
+        git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet
+        ```
+    - For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
 
-    ```
-    AUDIO_UNMUTED_BY_FOCUS: 'xmpp.audio_unmuted_by_focus'
-    ```
-* Created event listener for AUDIO_UNMUTED_BY_FOCUS.
-  - [JitsiConferenceEventManager.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConferenceEventManager.js)
+    * Added new event for AUDIO_UNMUTED_BY_FOCUS.
+      - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
 
-    ```
-    chatRoom.addListener(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS,
-        actor => {
-            // TODO: Add a way to differentiate between commands which caused
-            // us to mute and those that did not change our state (i.e. we were
-            // already muted).
-            Statistics.sendAnalytics(createRemotelyMutedEvent());
+        ```
+        AUDIO_UNMUTED_BY_FOCUS: 'xmpp.audio_unmuted_by_focus'
+        ```
+    * Created event listener for AUDIO_UNMUTED_BY_FOCUS.
+      - [JitsiConferenceEventManager.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConferenceEventManager.js)
 
-           // conference.mutedByFocusActor = actor;
+        ```
+        chatRoom.addListener(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS,
+            actor => {
+                // TODO: Add a way to differentiate between commands which caused
+                // us to mute and those that did not change our state (i.e. we were
+                // already muted).
+                Statistics.sendAnalytics(createRemotelyMutedEvent());
 
-            // set isMutedByFocus when setAudioMute Promise ends
-            conference.rtc.setAudioMute(false).then(
-                () => {
-                    conference.isMutedByFocus = false;
-                    conference.mutedByFocusActor = null;
-                })
-                .catch(
-                    error => {
+               // conference.mutedByFocusActor = actor;
+
+                // set isMutedByFocus when setAudioMute Promise ends
+                conference.rtc.setAudioMute(false).then(
+                    () => {
+                        conference.isMutedByFocus = false;
                         conference.mutedByFocusActor = null;
-                        logger.warn(
-                            'Error while audio unmuting due to focus request', error);
-                });
+                    })
+                    .catch(
+                        error => {
+                            conference.mutedByFocusActor = null;
+                            logger.warn(
+                                'Error while audio unmuting due to focus request', error);
+                    });
+            }
+        );
+        ```
+    * Added prototype for unMuteParticipant.
+      - [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
+
+        ```
+        JitsiConference.prototype.unMuteParticipant = function(id) {
+            const participant = this.getParticipantById(id);
+
+            if (!participant) {
+                return;
+            }
+            this.room.muteParticipant(participant.getJid(), false);
+        };
+        ```
+    * Added unMuteParticipant method and changed onMute method.
+      - [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
+
+        ```
+        unMuteParticipant(jid, mute) {
+            logger.info('set unmute', mute);
+            const iqToFocus = $iq(
+                { to: this.focusMucJid,
+                    type: 'set' })
+                .c('mute', {
+                    xmlns: 'http://jitsi.org/jitmeet/audio',
+                    jid
+                })
+                .t(mute.toString())
+                .up();
+
+            this.connection.sendIQ(
+                iqToFocus,
+                result => logger.log('set mute', result),
+                error => logger.log('set mute error', error));
         }
-    );
-    ```
-* Added prototype for unMuteParticipant.
-  - [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
+        ```
+        ```
+        onMute(iq) {
+            const from = iq.getAttribute('from');
+            if (from !== this.focusMucJid) {
+                logger.warn('Ignored mute from non focus peer');
 
-    ```
-    JitsiConference.prototype.unMuteParticipant = function(id) {
-        const participant = this.getParticipantById(id);
-
-        if (!participant) {
-            return;
+                return;
+            }
+            const mute = $(iq).find('mute');
+            if (mute.length && mute.text() === 'true') {
+                this.eventEmitter.emit(XMPPEvents.AUDIO_MUTED_BY_FOCUS, mute.attr('actor'));
+            } else if (mute.length && mute.text() === 'false') { // added unmute condition
+            this.eventEmitter.emit(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS, mute.attr('actor'));
+            } else {
+                    // XXX Why do we support anything but muting? Why do we encode the
+                    // value in the text of the element? Why do we use a separate XML
+                    // namespace?
+                    logger.warn('Ignoring a mute request which does not explicitly '
+                        - 'specify a positive mute command.');
+            }
         }
-        this.room.muteParticipant(participant.getJid(), false);
-    };
-    ```
-* Added unMuteParticipant method and changed onMute method.
-  - [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
-
-    ```
-    unMuteParticipant(jid, mute) {
-        logger.info('set unmute', mute);
-        const iqToFocus = $iq(
-            { to: this.focusMucJid,
-                type: 'set' })
-            .c('mute', {
-                xmlns: 'http://jitsi.org/jitmeet/audio',
-                jid
-            })
-            .t(mute.toString())
-            .up();
-
-        this.connection.sendIQ(
-            iqToFocus,
-            result => logger.log('set mute', result),
-            error => logger.log('set mute error', error));
-    }
-    ```
-    ```
-    onMute(iq) {
-        const from = iq.getAttribute('from');
-        if (from !== this.focusMucJid) {
-            logger.warn('Ignored mute from non focus peer');
-
-            return;
-        }
-        const mute = $(iq).find('mute');
-        if (mute.length && mute.text() === 'true') {
-            this.eventEmitter.emit(XMPPEvents.AUDIO_MUTED_BY_FOCUS, mute.attr('actor'));
-        } else if (mute.length && mute.text() === 'false') { // added unmute condition
-        this.eventEmitter.emit(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS, mute.attr('actor'));
-        } else {
-                // XXX Why do we support anything but muting? Why do we encode the
-                // value in the text of the element? Why do we use a separate XML
-                // namespace?
-                logger.warn('Ignoring a mute request which does not explicitly '
-                    - 'specify a positive mute command.');
-        }
-    }
-    ```
+        ```
 
 
 #### Contributors
