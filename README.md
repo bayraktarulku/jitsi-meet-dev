@@ -14,73 +14,86 @@ While the moderator can mute a participant, they cannot unmute the participant d
 - [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-repository)
 
 ## 1. jicofo repository
-__Conference focus is mandatory component of Jitsi Meet conferencing system next to the videobridge. To make changes to Jicofo, follow the steps below.__
-
-* First of all, clone jicofo locally or fork it.
+* You can clone the repository the change was made. (line no will be added)
     ```
     apt install maven
-    git clone https://github.com/jitsi/jicofo.git
+    git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
     cd jicofo
-    ```
-* Inside the cloned __jicofo__ project, there are the following folders and files;
-    * checkstyle.xml
-    * debian
-    * doc
-    * lib
-    * LICENSE
-    * pom.xml
-    * README.md
-    * resources
-    * script
-    * SECURITY.md
-    * src
-* To make changes to the __JitsiMeetConferenceImpl.java__ file in the project, go to the location of the file and make the following changes.
-    ```
-    cd jicofo/src/main/java/org/jitsi/jicofo
-    vim JitsiMeetConferenceImpl.java
-    ```
-* Edit the following code block in file __JitsiMeetConferenceImpl.java__. Remove this condition or comment (Line: 2422).
-    ```
-    // do not allow unmuting other participants even for the moderator
-    // if (!doMute && !fromJid.equals(toBeMutedJid))
-    // {
-    //    logger.warn("Blocking an unmute request (jid not the same).");
-    //    return false;
-    // }
-    ```
-* Go to the directory where the __pom.xml__ file is located and perform the __mvn install__ process to create the new jar files.
-    ```
-    cd ~/jicofo
     mvn install
-    ```
-* A target folder will be created after __mvn install__. Inside this folder are java jar files that we will use as compressed.
-    * archive-tmp
-    * checkstyle-checker.xml
-    * classes
-    * generated-test-sources
-    * jicofo-1.1-SNAPSHOT.jar
-    * maven-archiver
-    * surefire-reports
-    * checkstyle-cachefile
-    * checkstyle-result.xml
-    * generated-sources
-    * jicofo-1.1-SNAPSHOT-archive.zip
-    * __jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar__
-    * maven-status
-    * test-classes
-* We need to replace our new jar file with the old __jicofo.jar__ file.
-    ```
     cd target
     mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
     cp jicofo.jar /usr/share/jicofo/
+    /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
     ```
-* To restart services after changes;
+* if you want to do the processing steps yourself
 
-    ```/etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart```
+    __Conference focus is mandatory component of Jitsi Meet conferencing system next to the videobridge. To make changes to Jicofo, follow the steps below.__
 
-* In order to monitor Jicofo logs;
+    * First of all, clone jicofo locally or fork it.
+        ```
+        apt install maven
+        git clone https://github.com/jitsi/jicofo.git
+        cd jicofo
+        ```
+    * Inside the cloned __jicofo__ project, there are the following folders and files;
+        * checkstyle.xml
+        * debian
+        * doc
+        * lib
+        * LICENSE
+        * pom.xml
+        * README.md
+        * resources
+        * script
+        * SECURITY.md
+        * src
+    * To make changes to the __JitsiMeetConferenceImpl.java__ file in the project, go to the location of the file and make the following changes.
+        ```
+        cd jicofo/src/main/java/org/jitsi/jicofo
+        vim JitsiMeetConferenceImpl.java
+        ```
+    * Edit the following code block in file __JitsiMeetConferenceImpl.java__. Remove this condition or comment (Line: 2422).
+        ```
+        // do not allow unmuting other participants even for the moderator
+        // if (!doMute && !fromJid.equals(toBeMutedJid))
+        // {
+        //    logger.warn("Blocking an unmute request (jid not the same).");
+        //    return false;
+        // }
+        ```
+    * Go to the directory where the __pom.xml__ file is located and perform the __mvn install__ process to create the new jar files.
+        ```
+        cd ~/jicofo
+        mvn install
+        ```
+    * A target folder will be created after __mvn install__. Inside this folder are java jar files that we will use as compressed.
+        * archive-tmp
+        * checkstyle-checker.xml
+        * classes
+        * generated-test-sources
+        * jicofo-1.1-SNAPSHOT.jar
+        * maven-archiver
+        * surefire-reports
+        * checkstyle-cachefile
+        * checkstyle-result.xml
+        * generated-sources
+        * jicofo-1.1-SNAPSHOT-archive.zip
+        * __jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar__
+        * maven-status
+        * test-classes
+    * We need to replace our new jar file with the old __jicofo.jar__ file.
+        ```
+        cd target
+        mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
+        cp jicofo.jar /usr/share/jicofo/
+        ```
+    * To restart services after changes;
 
-    ```tail -f /var/log/jitsi/jicofo.log```
+        ```/etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart```
+
+    * In order to monitor Jicofo logs;
+
+        ```tail -f /var/log/jitsi/jicofo.log```
 
 ## 2. jitsi-meet repository
 description will be added!
