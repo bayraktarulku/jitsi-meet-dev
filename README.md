@@ -106,8 +106,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
       - [AbstractUnMuteButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
 
 
-    - Export UnMuteButton Component
-      - [index.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/index.js)
+    - Export UnMuteButton Component -> [index.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/index.js)
 
         ```
         export { default as UnMuteButton } from './UnMuteButton';
@@ -115,8 +114,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         from './UnMuteRemoteParticipantDialog';
         ```
 
-    - UnMuteButton Component added to remoteVideoOptionsMenu
-      - [RemoteVideoMenuTriggerButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
+    - UnMuteButton Component added to remoteVideoOptionsMenu -> [RemoteVideoMenuTriggerButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
 
         - UnMuteButton added import list
         ```
@@ -144,9 +142,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         );
         ```
 ##### 2.2 Create Unmute Button Dialog Component
-* Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
-  - [AbstractUnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
-  - [UnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
+* Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class -> [AbstractUnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js) && [UnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
 
     ```
     class UnMuteRemoteParticipantDialog extends AbstractUnMuteRemoteParticipantDialog {
@@ -175,8 +171,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
     ```
 
 ##### 2.3 Controls of Unmute
-* Method created for unmute option __unMuteRemoteParticipant__ imported.
-  - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
+* Method created for unmute option __unMuteRemoteParticipant__ imported ->  [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
 
     ```
     import {
@@ -191,14 +186,12 @@ While the moderator can mute a participant, they cannot unmute the participant d
         };
     }
     ```
-* Added const variable -> UNMUTE_REMOTE_PARTICIPANT.
-  - [actionTypes.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actionTypes.js)
+* Added const variable -> UNMUTE_REMOTE_PARTICIPANT -> [actionTypes.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actionTypes.js)
 
     ```
     export const UNMUTE_REMOTE_PARTICIPANT = 'UNMUTE_REMOTE_PARTICIPANT';
     ```
-* This option import list added.
-  - [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
+* This option import list added -> [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
 
     ```
     import {
@@ -212,8 +205,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         };
     }
     ```
-* Created new case (UNMUTE_REMOTE_PARTICIPANT).
-  - [middleware.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/middleware.js)
+* Created new case (UNMUTE_REMOTE_PARTICIPANT) -> [middleware.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/middleware.js)
 
     ```
     import {
@@ -234,14 +226,12 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```
    - For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
 
-   * Added new event for AUDIO_UNMUTED_BY_FOCUS.
-     - [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
+   * Added new event for AUDIO_UNMUTED_BY_FOCUS -> [XMPPEvents.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/service/xmpp/XMPPEvents.js)
 
       ```
       AUDIO_UNMUTED_BY_FOCUS: 'xmpp.audio_unmuted_by_focus'
       ```
-  * Created event listener for AUDIO_UNMUTED_BY_FOCUS.
-    - [JitsiConferenceEventManager.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConferenceEventManager.js)
+  * Created event listener for AUDIO_UNMUTED_BY_FOCUS -> [JitsiConferenceEventManager.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConferenceEventManager.js)
 
       ```
       chatRoom.addListener(XMPPEvents.AUDIO_UNMUTED_BY_FOCUS,
@@ -268,8 +258,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
           }
       );
       ```
-  * Added prototype for unMuteParticipant.
-    - [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
+  * Added prototype for unMuteParticipant ->  [JitsiConference.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/JitsiConference.js)
 
       ```
       JitsiConference.prototype.unMuteParticipant = function(id) {
@@ -281,8 +270,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
           this.room.muteParticipant(participant.getJid(), false);
       };
       ```
-  * Added unMuteParticipant method and changed onMute method.
-    - [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
+  * Added unMuteParticipant method and changed onMute method -> [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
 
       ```
       unMuteParticipant(jid, mute) {
