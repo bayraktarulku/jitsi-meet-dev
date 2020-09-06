@@ -97,11 +97,11 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```tail -f /var/log/jitsi/jicofo.log```
 
 ## 2. jitsi-meet repository
-    * You can clone the repository the change was made.
-        ```
-        git clone --branch mute-unmute git@github.com:bayraktarulku/jitsi-meet.git
-        ```
-    * For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
+- You can clone the repository the change was made.
+    ```
+    git clone --branch mute-unmute git@github.com:bayraktarulku/jitsi-meet.git
+    ```
+- For files and information updated in the repository or if you want to make changes yourself; You can follow the steps below.
 
 #### 2.1 Create Unmute Button Component
 * First, the unmute feature has been added to the participant's options menu.
