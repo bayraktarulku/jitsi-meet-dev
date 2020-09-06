@@ -11,7 +11,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
 
     git clone --branch mute-unmute git@github.com:bayraktarulku/lib-jitsi-meet.git
 #### 1. jicofo repository
-* You can clone the repository the change was made. (line no will be added)
+* You can clone the repository the change was made.
     ```
     apt install maven
     git clone --branch mute-unmute git@github.com:bayraktarulku/jicofo.git
@@ -45,11 +45,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         * SECURITY.md
         * src
     * To make changes to the __JitsiMeetConferenceImpl.java__ file in the project, go to the location of the file and make the following changes.
-        ```
-        cd jicofo/src/main/java/org/jitsi/jicofo
-        vim JitsiMeetConferenceImpl.java
-        ```
-    * Edit the following code block in file __JitsiMeetConferenceImpl.java__. Remove this condition or comment (Line: 2422).
+    * Edit the following code block in file __JitsiMeetConferenceImpl.java__. Remove this condition or comment [JitsiMeetConferenceImpl.java](https://github.com/bayraktarulku/jicofo/blob/mute-unmute/src/main/java/org/jitsi/jicofo/JitsiMeetConferenceImpl.java#L2422)
         ```
         // do not allow unmuting other participants even for the moderator
         // if (!doMute && !fromJid.equals(toBeMutedJid))
