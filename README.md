@@ -106,8 +106,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
 #### 2.1 Create Unmute Button Component
 * First, the unmute feature has been added to the participant's options menu.
     - UnMuteButton && AbstractUnMuteButton classes created
-      - [UnMuteButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
-      - [AbstractUnMuteButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
+      - [UnMuteButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
+      - [AbstractUnMuteButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
 
 
     - Export UnMuteButton Component
@@ -120,7 +120,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```
 
     - UnMuteButton Component added to remoteVideoOptionsMenu
-      - [RemoteVideoMenuTriggerButton](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
+      - [RemoteVideoMenuTriggerButton.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/RemoteVideoMenuTriggerButton.js)
 
         - UnMuteButton added import list
         ```
@@ -149,8 +149,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```
 #### 2.2 Create Unmute Button Dialog Component
 * Create AbstractUnMuteRemoteParticipantDialog. Then include it in the UnMuteRemoteParticipantDialog class.
-  - [AbstractUnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
-  - [UnMuteRemoteParticipantDialog](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
+  - [AbstractUnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteRemoteParticipantDialog.js)
+  - [UnMuteRemoteParticipantDialog.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteRemoteParticipantDialog.js)
 
     ```
     class UnMuteRemoteParticipantDialog extends AbstractUnMuteRemoteParticipantDialog {
