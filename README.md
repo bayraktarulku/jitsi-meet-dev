@@ -102,11 +102,9 @@ description will be added!
 #### 2.1 Create Unmute Button Component
 * First, the unmute feature has been added to the participant's options menu.
     - UnMuteButton && AbstractUnMuteButton classes created
-        ```
         [UnMuteButton] (https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/web/UnMuteButton.js)
         [AbstractUnMuteButton] (https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/components/AbstractUnMuteButton.js)
 
-        ```
 
     - Export UnMuteButton Component
         ```
