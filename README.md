@@ -8,6 +8,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
   - [2.2 Create Unmute Button Dialog Component](#2-2-create-unmute-button-dialog-component)
   - [2.3 Controls of Unmute ](#2-3-controls-of-unmute)
 - [3. lib-jitsi-meet repository](#3-lib-jitsi-meet-repository)
+- [4. lib-jitsi-meet repository](#4-changing-variable-values)
 
 #### 1. jicofo repository
 * You can clone the repository the change was made.
@@ -309,6 +310,24 @@ While the moderator can mute a participant, they cannot unmute the participant d
       }
       ```
 
+## 4. Changing variable values
+
+As you can see, the moderator can now unmute the participant. In this case, you need to fix the alert that you cannot unmute the participant while muting. -> [Main.json](https://github.com/sdcaglar/jitsi-meet/blob/mute-unmute/lang/main.json#L243)
+
+```
+"muteParticipantBody": "You can unmute the participant whenever you want.",
+"muteParticipantButton": "Mute",
+"muteParticipantDialog": "Are you sure you want to mute this participant?",
+"muteParticipantTitle": "Mute this participant?",
+
+"unMuteParticipantBody": "You can mute the participant whenever you want",
+"unMuteParticipantButton": "Unmute",
+"unMuteParticipantDialog": "Are you sure you want to unmute this participant?",
+"unMutearticipantTitle": "Unmute this participant?", 
+```
+Old mute-participant-dialog               |  New mute-participant-dialog	
+:----------------------------------------:|:-------------------------------------:
+![](img/old-mute-participant-dialog.png)  |  ![](img/mute-participant-dialog.png)
 
 #### Contributors
 
