@@ -167,7 +167,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
     ```
 
 ##### 2.3 Controls of Unmute
-* Method created for unmute option __unMuteRemoteParticipant__ imported ->  [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/action.js)
+* Method created for unmute option __unMuteRemoteParticipant__ imported ->  [actions.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/remote-video-menu/actions.js)
 
     ```
     import {
@@ -323,9 +323,9 @@ As you can see, the moderator can now unmute the participant. In this case, you 
 "unMuteParticipantBody": "You can mute the participant whenever you want",
 "unMuteParticipantButton": "Unmute",
 "unMuteParticipantDialog": "Are you sure you want to unmute this participant?",
-"unMutearticipantTitle": "Unmute this participant?", 
+"unMutearticipantTitle": "Unmute this participant?",
 ```
-Old mute-participant-dialog               |  New mute-participant-dialog	
+Old mute-participant-dialog               |  New mute-participant-dialog
 :----------------------------------------:|:-------------------------------------:
 ![](img/old-mute-participant-dialog.png)  |  ![](img/mute-participant-dialog.png)
 
