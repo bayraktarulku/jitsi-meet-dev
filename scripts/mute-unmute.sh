@@ -70,11 +70,13 @@ echo
 # added extra control --> if file doesn't exist
 cd ..
 cd lib-jitsi-meet
+rm -rf node_modules package-lock.json
 # webpack
 npm uninstall webpack
 npm i -D webpack
 npm update && npm install
-cd ..
 
+cd ..
 cd jitsi-meet/
+npm update && npm install
 npm install lib-jitsi-meet --force && make
