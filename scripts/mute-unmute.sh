@@ -34,32 +34,41 @@ echo "# JICOFO #"
 echo "################################"
 echo
 
-# added extra control --> if file doesn't exist
 apt install -y maven
-cd jicofo
-mvn install
-cd target
-mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
-cp jicofo.jar /usr/share/jicofo/
+if [[ -d jicofo ]]
+then
+    cd jicofo
+    mvn install
+    cd target
+    mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
+    cp jicofo.jar /usr/share/jicofo/
 
-/etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
-cd ../../
-
+    /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
+    cd ../../
+else
+    echo "not found jicofo repository"
+    exit 1
+fi
 echo
 echo "################################"
 echo "# JITSI-MEET #"
 echo "################################"
 echo
 
-# added extra control --> if file doesn't exist
-cd jitsi-meet
-rm -rf node_modules package-lock.json
-github_url=`grep -i "lib-jitsi-meet" package.json`
-file_url="    \"lib-jitsi-meet\": \"file:../lib-jitsi-meet\","
-echo $github_url
-echo $file_url
-sed -zi "s|$github_url|$file_url|g" package.json
-
+if [[ -d jitsi-meet ]]
+then
+    cd jitsi-meet
+    rm -rf node_modules package-lock.json
+    github_url=`grep -i "lib-jitsi-meet" package.json`
+    file_url="    \"lib-jitsi-meet\": \"file:../lib-jitsi-meet\","
+    echo $github_url
+    echo $file_url
+    sed -zi "s|$github_url|$file_url|g" package.json
+    cd ..
+else
+    echo "not found jitsi-meet repository"
+    exit 1
+fi
 
 echo
 echo "################################"
@@ -67,16 +76,20 @@ echo "# LIB-JITSI-MEET #"
 echo "################################"
 echo
 
-# added extra control --> if file doesn't exist
-cd ..
-cd lib-jitsi-meet
-rm -rf node_modules package-lock.json
-# webpack
-npm uninstall webpack
-npm i -D webpack
-npm update && npm install
+if [[ -d lib-jitsi-meet ]]
+then
+    cd lib-jitsi-meet
+    rm -rf node_modules package-lock.json
+    # webpack
+    npm uninstall webpack
+    npm i -D webpack
+    npm update && npm install
+    cd ..
+else
+    echo "not found lib-jitsi-meet repository"
+    exit 1
+fi
 
-cd ..
 cd jitsi-meet/
 npm update && npm install
 npm install lib-jitsi-meet --force && make
