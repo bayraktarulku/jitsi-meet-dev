@@ -266,27 +266,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
           this.room.muteParticipant(participant.getJid(), false);
       };
       ```
-  * Added unMuteParticipant method and changed onMute method -> [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
+  * Added else if condition for unmute status -> [ChatRoom.js](https://github.com/bayraktarulku/lib-jitsi-meet/blob/mute-unmute/modules/xmpp/ChatRoom.js)
 
-      ```
-      unMuteParticipant(jid, mute) {
-          logger.info('set unmute', mute);
-          const iqToFocus = $iq(
-              { to: this.focusMucJid,
-                  type: 'set' })
-              .c('mute', {
-                  xmlns: 'http://jitsi.org/jitmeet/audio',
-                  jid
-              })
-              .t(mute.toString())
-              .up();
-
-          this.connection.sendIQ(
-              iqToFocus,
-              result => logger.log('set mute', result),
-              error => logger.log('set mute error', error));
-      }
-      ```
       ```
       onMute(iq) {
           const from = iq.getAttribute('from');
