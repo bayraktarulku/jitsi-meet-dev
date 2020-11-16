@@ -57,9 +57,10 @@ While the moderator can mute a participant, they cannot unmute the participant d
     * Go to the directory where the __pom.xml__ file is located and perform the __mvn install__ process to create the new jar files.
         ```
         cd ~/jicofo
+        mvn package -DskipTests -Dassembly.skipAssembly=false
         mvn install
         ```
-    * A target folder will be created after __mvn install__. Inside this folder are java jar files that we will use as compressed.
+    * A target folder will be created after __mvn install__. Inside this folder are zip file that we will use as compressed.
         * archive-tmp
         * checkstyle-checker.xml
         * classes
@@ -70,15 +71,14 @@ While the moderator can mute a participant, they cannot unmute the participant d
         * checkstyle-cachefile
         * checkstyle-result.xml
         * generated-sources
-        * jicofo-1.1-SNAPSHOT-archive.zip
-        * __jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar__
+        * __jicofo-1.1-SNAPSHOT-archive.zip__
+        * jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar
         * maven-status
         * test-classes
     * We need to replace our new jar file with the old __jicofo.jar__ file.
         ```
-        cd target
-        mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
-        cp jicofo.jar /usr/share/jicofo/
+        unzip target/jicofo-1.1-SNAPSHOT-archive.zip
+        cp jicofo-1.1-SNAPSHOT/jicofo.jar /usr/share/jicofo/
         ```
     * To restart services after changes;
 
