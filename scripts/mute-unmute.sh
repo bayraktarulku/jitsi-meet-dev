@@ -1,69 +1,49 @@
 #!/bin/bash
 set -e
 
-path="https://github.com/bayraktarulku/"
-JICOFO="jicofo.git"
-JITSIMEET="jitsi-meet.git"
-LIBJITSIMEET="lib-jitsi-meet.git"
-REPOSITORY=(
-        "jicofo":$JICOFO
-        "jitsi-meet":$JITSIMEET
-        "lib-jitsi-meet":$LIBJITSIMEET)
+url='https://raw.githubusercontent.com/bayraktarulku/jitsi-meet/mute-unmute/'
+lib_url='https://raw.githubusercontent.com/bayraktarulku/lib-jitsi-meet/mute-unmute/'
 
-for repo in "${REPOSITORY[@]}"
-do
-    key="${repo%%:*}"
-    value="${repo##*:}"
-
-    if [[ -d $key ]]
-    then
-        cd $key
-        git pull
-        cd ..
-    else
-        echo "$key repository is loading..."
-        echo "$path$value"
-        git clone $path$value
-    fi
-done
-
+echo "#####################################"
+echo "# developer-setup script is started #"
+echo "#####################################"
+echo
+curl "https://raw.githubusercontent.com/bayraktarulku/jitsi-meet-dev/master/scripts/developer-setup.sh" | bash
 
 echo
-echo "################################"
+echo "####################################"
 echo "# JICOFO #"
-echo "################################"
+echo "####################################"
 echo
 
-apt install -y maven
 if [[ -d jicofo ]]
 then
     cd jicofo
+    sed -i '/do not allow unmuting/,/}/ s~^~//~' src/main/java/org/jitsi/jicofo/JitsiMeetConferenceImpl.java
+    mvn package -DskipTests -Dassembly.skipAssembly=false
     mvn install
-    cd target
-    mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
-    cp jicofo.jar /usr/share/jicofo/
-
+    unzip target/jicofo-1.1-SNAPSHOT-archive.zip
+    cp jicofo-1.1-SNAPSHOT/jicofo.jar /usr/share/jicofo/
     /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
-    cd ../../
+    cd ../
 else
     echo "not found jicofo repository"
     exit 1
 fi
+
 echo
-echo "################################"
+echo "####################################"
 echo "# JITSI-MEET #"
-echo "################################"
+echo "####################################"
 echo
 
 if [[ -d jitsi-meet ]]
 then
     cd jitsi-meet
+    for f in $(cat /home/jitsi-path-list.txt) ; do
+	    curl $url$f --create-dirs -o $f
+    done
     rm -rf node_modules package-lock.json
-    github_url=`grep -i "lib-jitsi-meet" package.json`
-    file_url="    \"lib-jitsi-meet\": \"file:../lib-jitsi-meet\","
-    echo $github_url
-    echo $file_url
-    sed -zi "s|$github_url|$file_url|g" package.json
     cd ..
 else
     echo "not found jitsi-meet repository"
@@ -71,18 +51,18 @@ else
 fi
 
 echo
-echo "################################"
+echo "####################################"
 echo "# LIB-JITSI-MEET #"
-echo "################################"
+echo "####################################"
 echo
 
 if [[ -d lib-jitsi-meet ]]
 then
     cd lib-jitsi-meet
+    for f in $(cat /home/lib-path-list.txt); do
+	    curl $lib_url$f --create-dirs -o $f
+    done
     rm -rf node_modules package-lock.json
-    # webpack
-    npm uninstall webpack
-    npm i -D webpack
     npm update && npm install
     cd ..
 else
