@@ -193,7 +193,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
     import {
         UNMUTE_REMOTE_PARTICIPANT,
     }
-
+    ```
+    ```
     export function unMuteRemoteParticipant(id) {
         return {
             type: UNMUTE_REMOTE_PARTICIPANT,
