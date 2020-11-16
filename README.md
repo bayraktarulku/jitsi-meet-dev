@@ -187,7 +187,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
     ```
     export const UNMUTE_REMOTE_PARTICIPANT = 'UNMUTE_REMOTE_PARTICIPANT';
     ```
-* This option import list added -> [action.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
+* This option import list added -> [actions.js](https://github.com/bayraktarulku/jitsi-meet/blob/mute-unmute/react/features/base/participants/actions.js)
 
     ```
     import {
