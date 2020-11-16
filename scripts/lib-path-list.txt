@@ -1,0 +1,4 @@
+service/xmpp/XMPPEvents.js
+JitsiConferenceEventManager.js
+JitsiConference.js
+modules/xmpp/ChatRoom.js
