@@ -209,7 +209,8 @@ While the moderator can mute a participant, they cannot unmute the participant d
     import {
         UNMUTE_REMOTE_PARTICIPANT,
     }
-
+    ```
+    ```
     case UNMUTE_REMOTE_PARTICIPANT: {
         const { conference } = store.getState()['features/base/conference'];
         conference.unMuteParticipant(action.id);
