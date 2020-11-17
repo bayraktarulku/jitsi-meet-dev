@@ -16,11 +16,13 @@ While the moderator can mute a participant, they cannot unmute the participant d
     apt install maven
     git clone --branch mute-unmute git@github.com:bayraktarulku/jicofo.git
     cd jicofo
+    mvn package -DskipTests -Dassembly.skipAssembly=false
     mvn install
-    cd target
-    mv jicofo-1.1-SNAPSHOT-jar-with-dependencies.jar jicofo.jar
-    cp jicofo.jar /usr/share/jicofo/
+    unzip target/jicofo-1.1-SNAPSHOT-archive.zip
+    cp jicofo-1.1-SNAPSHOT/jicofo.jar /usr/share/jicofo/
+
     /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
+    cd ../
     ```
 * if you want to do the processing steps yourself
 
