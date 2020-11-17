@@ -314,7 +314,7 @@ Old mute-participant-dialog               |  New mute-participant-dialog
 
 #### Contributors
 
-[Seda Çağlar](https://github.com/sdcaglar)
-[Kübra Yavuz](https://github.com/kubrayavuz)
-[Gülistan Dalbudak](https://github.com/guli-dlbdk)
+- [Seda Çağlar](https://github.com/sdcaglar)
+- [Kübra Yavuz](https://github.com/kubrayavuz)
+- [Gülistan Dalbudak](https://github.com/guli-dlbdk)
 
