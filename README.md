@@ -20,7 +20,6 @@ While the moderator can mute a participant, they cannot unmute the participant d
     mvn install
     unzip target/jicofo-1.1-SNAPSHOT-archive.zip
     cp jicofo-1.1-SNAPSHOT/jicofo.jar /usr/share/jicofo/
-
     /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
     cd ../
     ```
