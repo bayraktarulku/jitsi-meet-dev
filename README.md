@@ -313,6 +313,13 @@ Old mute-participant-dialog               |  New mute-participant-dialog
 :----------------------------------------:|:-------------------------------------:
 ![](img/old-mute-participant-dialog.png)  |  ![](img/mute-participant-dialog.png)
 
+
+#### The unmute button is in the options in the picture below.
+![](img/unmute-option.png) 
+
+#### Version information used in this repo
+![](img/version.png)
+
 #### Contributors
 
 - [Seda Çağlar](https://github.com/sdcaglar)
