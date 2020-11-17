@@ -306,7 +306,7 @@ As you can see, the moderator can now unmute the participant. In this case, you 
 "unMuteParticipantBody": "You can mute the participant whenever you want",
 "unMuteParticipantButton": "Unmute",
 "unMuteParticipantDialog": "Are you sure you want to unmute this participant?",
-"unMutearticipantTitle": "Unmute this participant?",
+"unMuteParticipantTitle": "Unmute this participant?",
 ```
 Old mute-participant-dialog               |  New mute-participant-dialog
 :----------------------------------------:|:-------------------------------------:
