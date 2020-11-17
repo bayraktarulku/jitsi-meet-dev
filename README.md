@@ -133,7 +133,7 @@ While the moderator can mute a participant, they cannot unmute the participant d
         ```
         buttons.push(
             <UnMuteButton
-                isAudioMuted = { isAudioMuted }
+                isAudioMuted = { _isAudioMuted }
                 key = 'unmute'
                 participantID = { participantID } />
         );
